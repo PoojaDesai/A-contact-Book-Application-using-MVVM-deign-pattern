@@ -1,0 +1,36 @@
+﻿<Window x:Class="TestApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModel="clr-namespace:TestApplication.ViewModel"
+        xmlns:view="clr-namespace:TestApplication.View"
+        Title="Contact Book using MVVM Pattern" Height="400" Width="525">
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:CreateViewModel}">
+            <view:CreateView />
+        </DataTemplate>
+               <DataTemplate DataType="{x:Type viewModel:LoadViewModel}">
+            <view:LoadView />
+        </DataTemplate>   
+
+        <DataTemplate DataType="{x:Type viewModel:SelectViewModel}">
+            <view:SelectView/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>     
+        </Grid.ColumnDefinitions>
+
+        <Border Width="150" Height="350" Margin="6,6,96,6" BorderThickness="3" CornerRadius="2" BorderBrush="Chocolate">
+            <ContentPresenter Name="contentControl2"
+                 Width="140" Height="350"  Content="{Binding Path=SelectContentControl,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  />
+        </Border>
+        <Border Height="350" Grid.ColumnSpan="2" Margin="162,6,0,6"   BorderThickness="3" CornerRadius="2" BorderBrush="Chocolate">
+            <ContentPresenter Name="contentControl1"
+                Height="350"    Width="329"  Content="{Binding Path=ViewContentControl,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  />
+        </Border>
+            
+    </Grid>
+</Window>

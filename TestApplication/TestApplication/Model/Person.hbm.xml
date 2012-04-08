@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="TestApplication"
+                   assembly="TestApplication">
+
+  <!-- Mappings for class 'Person' -->
+  <class name="TestApplication.Model.Person" table="TestApplication_Person" lazy="true">
+
+    <id name="ID" column="ID" >
+
+      <generator class="assigned" />
+
+    </id>
+
+    <property name="Firstname" column="FirstName" type="String" length="50"/>
+
+    <property name="ContactNumber" column="ContactNumber" type="String" length="50"/>
+
+    <property name="EmailId" column="EmailId" type="String"  length="50" />
+
+  </class>
+
+</hibernate-mapping>

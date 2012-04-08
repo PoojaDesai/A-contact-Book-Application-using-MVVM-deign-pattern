@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="TestApplication.View.CreateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            Height="300" Width="300">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>      
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2"    Height="40" HorizontalAlignment="Left"  Name="textBlock" Text="Enter Contact Information" VerticalAlignment="Center" Width="300" TextAlignment="Center" FontSize="16" Foreground="Chocolate" FontStretch="Normal" />
+
+        <TextBlock Grid.Row="2"   Grid.Column="0"   Height="23" HorizontalAlignment="Left"  Name="textBlock4" Text="ID" VerticalAlignment="Top" Width="104" />
+        <TextBox Grid.Row="2"  Grid.Column="1"  Text="{Binding Path=ID, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Height="27" HorizontalAlignment="Left"  Name="textBox4" VerticalAlignment="Top" Width="98" />
+
+        <TextBox Grid.Row="3"   Grid.Column="1"  Height="30" HorizontalAlignment="Left"  Name="textBox1" VerticalAlignment="Top" Width="107" Text="{Binding Path=FirstName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Grid.Row="3"   Grid.Column="0"  Height="29" HorizontalAlignment="Left"  Name="textBlock1" Text="Name" VerticalAlignment="Top" Width="103" />
+
+        <TextBlock Grid.Row="4"   Grid.Column="0"  Height="26" HorizontalAlignment="Left"  Name="textBlock2" Text="Contact Number" VerticalAlignment="Top" Width="95" />
+        <TextBox Grid.Row="4"   Grid.Column="1"  Text="{Binding ContactNumber,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"  Height="28" HorizontalAlignment="Left"  Name="textBox2" VerticalAlignment="Top" Width="107" />
+
+        <TextBlock Grid.Row="5"   Grid.Column="0"  Height="25" HorizontalAlignment="Left"  Name="textBlock3" Text="Email ID" VerticalAlignment="Top" Width="86" />
+        <TextBox Grid.Row="5"   Grid.Column="1"  Text="{Binding Path=EmailId, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Height="26" HorizontalAlignment="Left" Name="textBox3" VerticalAlignment="Top" Width="110" />
+
+        <Button Grid.Row="7" Content="_Save" Command="{Binding Path=SaveCommand}" Height="22" HorizontalAlignment="Left"  Name="button1" VerticalAlignment="Top" Width="89" Grid.Column="1" Margin="21,6,0,0" />
+       
+       
+    </Grid>
+</UserControl>

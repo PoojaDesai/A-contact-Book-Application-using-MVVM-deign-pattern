@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="TestApplication.View.LoadView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="375">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+    
+
+        <StackPanel Grid.Row="2">
+
+            <DataGrid Grid.Row="2" ItemsSource="{Binding Path=PersonData}" x:Name="dtgrdemp"
+                 AutoGenerateColumns="False"
+                 SelectionMode="Extended"
+                 SelectionUnit="FullRow"
+                 GridLinesVisibility="Horizontal"
+                 CanUserDeleteRows="True"
+                 CanUserAddRows="False" 
+                AlternatingRowBackground="BlanchedAlmond"
+                SelectedItem="{Binding SelectedCustomer,Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" Height="195">
+
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Padding" Value="5" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" Width="SizeToCells" MinWidth="50"  Binding="{Binding ID,  ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Header="FirstName" Width="SizeToCells" MinWidth="80" Binding="{Binding Firstname,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged }"/>
+                    <DataGridTextColumn Header="ContactNumber" Width="SizeToCells" MinWidth="100" Binding="{Binding ContactNumber,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="EmailID" Width="SizeToCells" MinWidth="100" Binding="{Binding EmailId,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <TextBlock Height="40" HorizontalAlignment="Left" Margin="13,12,0,0" Name="textBlock1" Text="Contacts from Database" VerticalAlignment="Center" Width="300" TextAlignment="Center" FontSize="16" Foreground="Chocolate" FontStretch="Normal" />
+        <Button Content="Delete Record" Grid.Row="4" Height="30" HorizontalAlignment="Left" Margin="154,6,0,0" Name="Deletebutton" VerticalAlignment="Top" Width="100" Command="{Binding Path=DeleteRecordCommand,UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
+</UserControl>
